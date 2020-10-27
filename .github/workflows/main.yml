@@ -13,7 +13,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  linter:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -22,24 +22,23 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      # Creates a python3 virtual environment
+      - name: Create python3 venv
+        run: python3 -m venv venv
       
-      # Current working directory
-      - name: Present working directory
-        run: pwd
+      # Activates the python3 virtual environment
+      - name: Activate venv
+        run: source $GITHUB_WORKSPACE/venv/bin/activate
       
-      # List all files and directories in working directory
-      - name: List files and directory in working directory
-        run: ls -la
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          python3 -m venv venv
-          source ./venv/bin/activate
-          pip install pre-commit
-          pre-commit install
-          pre-commit run --all-files
-          ls -la
+      # Installing all the pip packages using requirements.txt file
+      - name: Installing pip requirements
+        run: pip install -r requirements.txt
+      
+      # Installing pre-commit for the repository
+      - name: Installing pre-commit for the repository
+        run: pre-commit install
+      
+      # Running pre-commit hooks on all the files of repository
+      - name: Run pre-commit on all files
+        run: pre-commit run --all-files
+        
