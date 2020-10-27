@@ -32,7 +32,7 @@ jobs:
       
       # Installing all the pip packages using requirements.txt file
       - name: Installing pip requirements
-        run: pip install -r requirements.txt
+        run: pip3 install -r requirements.txt
       
       # Installing pre-commit for the repository
       - name: Installing pre-commit for the repository
