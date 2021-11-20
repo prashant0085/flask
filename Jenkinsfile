@@ -1,6 +1,17 @@
 node {
     stage('Checkout Flask Repository') {
-        echo 'Cloning the Flask Repo....'
+        checkout(
+            [$class: 'GitSCM',
+            branches: [[name: '*/develop']],
+            browser: [$class: 'GithubWeb',
+            repoUrl: 'https://github.com/prashant0085/flask'],
+            extensions: [],
+            userRemoteConfigs: [
+                [credentialsId: 'prashant-github-access',
+                url: 'https://github.com/prashant0085/flask.git']
+                ]
+            ]
+        )
     }
     stage('Deploy the code') {
         echo 'Deploying Flask Application....'
