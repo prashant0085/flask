@@ -1,4 +1,24 @@
 node {
+    properties(
+        [parameters(
+            [
+                string(
+                    name: 'GITHUB_REPO_URL',
+                    defaultValue: 'https://github.com/prashant0085/flask.git',
+                    description: 'GitHub repository URL',
+                    trim: true
+                ),
+                choice(
+                    choices: ['develop', 'main'],
+                    description: 'Github repository branch',
+                    name: 'GITHUB_REPO_BRANCH')]
+                ),
+                pipelineTriggers(
+                    [githubPush()]
+            )
+        ]
+    )
+
     stage('Checkout Flask Repository') {
         checkout(
             [$class: 'GitSCM',
