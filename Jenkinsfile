@@ -8,11 +8,11 @@ node {
                     description: 'GitHub repository URL',
                     trim: true
                 ),
-                /*choice(
+                choice(
                     choices: ['develop', 'main', 'master'],
                     description: 'Github repository branch',
                     name: 'GITHUB_REPO_BRANCH')]
-                ),*/
+                ),
                 string(
                     defaultValue: 'develop', 
                     description: 'GitHub Repository Branch', 
