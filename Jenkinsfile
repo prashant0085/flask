@@ -8,10 +8,11 @@ node {
                     description: 'GitHub repository URL',
                     trim: true
                 ),
-                choice(
-                    choices: ['develop', 'main', 'master'],
+                string(
+                    name: 'GITHUB_REPO_BRANCH',
+                    defaultValue: 'develop',
                     description: 'Github repository branch',
-                    name: 'GITHUB_REPO_BRANCH')]
+                    trim: true
                 ),
                 pipelineTriggers(
                     [githubPush()]
@@ -22,13 +23,13 @@ node {
     stage('Checkout Flask Repository') {
         checkout(
             [$class: 'GitSCM',
-            branches: [[name: '*/develop']],
+            branches: [[name: $GITHUB_REPO_BRANCH]],
             browser: [$class: 'GithubWeb',
-            repoUrl: 'https://github.com/prashant0085/flask'],
+            repoUrl: $GITHUB_REPO_URL],
             extensions: [],
             userRemoteConfigs: [
                 [credentialsId: 'prashant-github-access',
-                url: 'https://github.com/prashant0085/flask.git']
+                url: $GITHUB_REPO_URL]
                 ]
             ]
         )
