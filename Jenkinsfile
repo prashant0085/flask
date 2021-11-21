@@ -9,7 +9,7 @@ node {
                     trim: true
                 ),
                 choice(
-                    choices: ['develop', 'main'],
+                    choices: ['develop', 'main', 'master'],
                     description: 'Github repository branch',
                     name: 'GITHUB_REPO_BRANCH')]
                 ),
