@@ -35,6 +35,18 @@ node {
     }
     stage('Deploy the code') {
         echo 'Deploying Flask Application....'
+        sh '''
+        cd $GITHUB_REPO_URL
+        ls -la
+        python3 --version
+        sudo yum install nodejs -y
+        npm install pm2@latest -g
+        pip3 install virtualenv
+        virtualenv --python=python3 venv
+        source ./venv/bin/activate
+        pip3 install -r requirements.txt
+        pm2 start flaskblog.py --name flaskblog-app --interpreter=python3
+        '''
     }
     stage('Test Deployment') {
         echo 'Deploying the Flask Application....'
