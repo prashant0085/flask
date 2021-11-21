@@ -16,7 +16,7 @@ node {
                 string(
                     defaultValue: 'develop', 
                     description: 'GitHub Repository Branch', 
-                    name: 'GITHUB_REPO_BRANCH')]
+                    name: 'GITHUB_REPO_BRANCH'),]
                 ),
                 pipelineTriggers(
                     [githubPush()]
