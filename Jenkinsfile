@@ -37,7 +37,6 @@ node {
         echo 'Deploying Flask Application....'
         sh '''
         ls -la
-        cd ./flask
         python3 --version
         sudo yum install nodejs -y
         npm install pm2@latest -g
