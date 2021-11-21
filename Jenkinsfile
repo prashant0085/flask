@@ -8,16 +8,16 @@ node {
                     description: 'GitHub repository URL',
                     trim: true
                 ),
-                choice(
+                /*choice(
                     choices: ['develop', 'main', 'master'],
                     description: 'Github repository branch',
                     name: 'GITHUB_REPO_BRANCH')]
-                ),
-                /*string(
+                ),*/
+                string(
                     defaultValue: 'develop', 
                     description: 'GitHub Repository Branch', 
                     name: 'GITHUB_REPO_BRANCH')]
-                ),*/
+                ),
                 pipelineTriggers(
                     [githubPush()]
             )
