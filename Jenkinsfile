@@ -29,7 +29,7 @@ node {
             extensions: [],
             userRemoteConfigs: [
                 [credentialsId: 'prashant-github-access',
-                url: $GITHUB_REPO_URL]
+                url: 'https://github.com/prashant0085/flask.git']
                 ]
             ]
         )
@@ -42,7 +42,7 @@ node {
             browser: [$class: 'GithubWeb',
             userRemoteConfigs: [
                 [credentialsId: 'prashant-github-access',
-                url: $GITHUB_REPO_URL]
+                url: 'https://github.com/prashant0085/flask.git']
                 ]
             ]
         )
