@@ -38,7 +38,8 @@ node {
         sh '''
         ls -la
         python3 --version
-        sudo yum install nodejs -y
+        sudo su
+        yum install nodejs -y
         npm install pm2@latest -g
         pip3 install virtualenv
         virtualenv --python=python3 venv
