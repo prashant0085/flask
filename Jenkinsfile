@@ -36,8 +36,8 @@ node {
     stage('Deploy the code') {
         echo 'Deploying Flask Application....'
         sh '''
-        cd $GITHUB_REPO_URL
         ls -la
+        cd ./flask
         python3 --version
         sudo yum install nodejs -y
         npm install pm2@latest -g
