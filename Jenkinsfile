@@ -23,17 +23,31 @@ node {
     stage('Checkout Flask Repository') {
         checkout(
             [$class: 'GitSCM',
-            branches: [[name: '${params.GITHUB_REPO_BRANCH}'],
+            branches: [[name: '*/develop']],
             browser: [$class: 'GithubWeb',
-            repoUrl: '${params.GITHUB_REPO_URL}'],
+            repoUrl: $GITHUB_REPO_URL],
             extensions: [],
             userRemoteConfigs: [
                 [credentialsId: 'prashant-github-access',
-                url: '${params.GITHUB_REPO_URL}']
+                url: $GITHUB_REPO_URL]
                 ]
             ]
         )
     }
+
+    stage('Checkout Flask Repository-1') {
+        checkout(
+            [$class: 'GitSCM',
+            branches: [[name: '*/develop']],
+            browser: [$class: 'GithubWeb',
+            userRemoteConfigs: [
+                [credentialsId: 'prashant-github-access',
+                url: $GITHUB_REPO_URL]
+                ]
+            ]
+        )
+    }
+
     stage('Deploy the code') {
         echo 'Deploying Flask Application....'
     }
