@@ -38,7 +38,7 @@ node {
         sh '''
         ls -la
         python3 --version
-        npm install pm2@latest -g
+        sudo npm install pm2@latest -g
         pip3 install virtualenv
         virtualenv --python=python3 venv
         source ./venv/bin/activate
