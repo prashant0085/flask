@@ -11,7 +11,7 @@ node {
                 string(
                     name: 'GITHUB_REPO_BRANCH',
                     defaultValue: 'develop',
-                    description: 'Github repository branch',
+                    description: 'GitHub repository branch',
                     trim: true
                 ),
                 pipelineTriggers(
@@ -25,7 +25,7 @@ node {
             [$class: 'GitSCM',
             branches: [[name: '*/develop']],
             browser: [$class: 'GithubWeb',
-            repoUrl: $GITHUB_REPO_URL],
+            repoUrl: 'https://github.com/prashant0085/flask'],
             extensions: [],
             userRemoteConfigs: [
                 [credentialsId: 'prashant-github-access',
@@ -34,20 +34,6 @@ node {
             ]
         )
     }
-
-    stage('Checkout Flask Repository-1') {
-        checkout(
-            [$class: 'GitSCM',
-            branches: [[name: '*/develop']],
-            browser: [$class: 'GithubWeb',
-            userRemoteConfigs: [
-                [credentialsId: 'prashant-github-access',
-                url: 'https://github.com/prashant0085/flask.git']
-                ]
-            ]
-        )
-    }
-
     stage('Deploy the code') {
         echo 'Deploying Flask Application....'
     }
