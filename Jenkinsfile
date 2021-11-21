@@ -39,7 +39,7 @@ node {
         ls -la
         python3 --version
         pip3 install virtualenv
-        virtualenv --python=python3 venv
+        /var/lib/jenkins/.local/bin/virtualenv --python=python3 venv
         source ./venv/bin/activate
         pip3 install -r requirements.txt
         pm2 start flaskblog.py --name flaskblog-app --interpreter=python3
