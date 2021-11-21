@@ -23,13 +23,13 @@ node {
     stage('Checkout Flask Repository') {
         checkout(
             [$class: 'GitSCM',
-            branches: [[name: ${params.GITHUB_REPO_BRANCH}],
+            branches: [[name: '${params.GITHUB_REPO_BRANCH}'],
             browser: [$class: 'GithubWeb',
-            repoUrl: ${params.GITHUB_REPO_URL}],
+            repoUrl: '${params.GITHUB_REPO_URL}'],
             extensions: [],
             userRemoteConfigs: [
                 [credentialsId: 'prashant-github-access',
-                url: ${params.GITHUB_REPO_URL}]
+                url: '${params.GITHUB_REPO_URL}']
                 ]
             ]
         )
