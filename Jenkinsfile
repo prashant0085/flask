@@ -42,7 +42,7 @@ node {
         /var/lib/jenkins/.local/bin/virtualenv --python=python3 venv
         source ./venv/bin/activate
         pip3 install -r requirements.txt
-        pm2 start flaskblog.py --name flaskblog-app --interpreter=python3
+        nohup python flaskblog.py
         '''
     }
     stage('Test Deployment') {
