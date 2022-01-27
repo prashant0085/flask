@@ -37,12 +37,18 @@ node {
         echo 'Deploying Flask Application....'
         sh '''
         ls -la
-        python3 --version
-        pip3 install virtualenv
-        /var/lib/jenkins/.local/bin/virtualenv --python=python3 venv
-        source ./venv/bin/activate
-        pip3 install -r requirements.txt
-        nohup python flaskblog.py
+        #!/bin/bash
+        yum update -y
+        amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
+        yum install -y httpd mariadb-server
+        systemctl start httpd
+        systemctl enable httpd
+        usermod -a -G apache ec2-user
+        chown -R ec2-user:apache /var/www
+        chmod 2775 /var/www
+        find /var/www -type d -exec chmod 2775 {}
+        find /var/www -type f -exec chmod 0664 {}
+        echo "Hello-World" > /var/www/html/index.html
         '''
     }
     stage('Test Deployment') {
