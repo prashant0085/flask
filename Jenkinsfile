@@ -42,7 +42,7 @@ node {
         yum install -y httpd
         systemctl start httpd
         systemctl enable httpd
-        cp -r ./html/* /var/www/html/index.html
+        cp -r ./html/* /var/www/html/
         systemctl restart httpd
         '''
     }
