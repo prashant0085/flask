@@ -1,5 +1,5 @@
 """
-A Sample app using python flask framework
+A Sample application using python flask framework
 """
 from flask import Flask
 app = Flask(__name__)
